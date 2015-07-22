@@ -1,0 +1,60 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+
+# agent setup.
+logstore.sources = kafka zookeeper syslogd
+logstore.channels = memch
+logstore.sinks = custom
+
+# source setup
+logstore.sources.kafka.type = exec
+logstore.sources.kafka.command = tail -F /home/major/Development/kafka/logs/server.log
+#logstore.sources.kafka.batchSize = 5
+logstore.sources.kafka.channels = memch
+logstore.sources.kafka.interceptors = i1
+logstore.sources.kafka.interceptors.i1.type = static
+logstore.sources.kafka.interceptors.i1.key = source 
+logstore.sources.kafka.interceptors.i1.value = kafka 
+
+logstore.sources.zookeeper.type = exec
+logstore.sources.zookeeper.command = tail -F /home/major/Development/zookeeper/zookeeper.log
+logstore.sources.zookeeper.channels = memch
+logstore.sources.zookeeper.interceptors = i2
+logstore.sources.zookeeper.interceptors.i2.type = static
+logstore.sources.zookeeper.interceptors.i2.key = source 
+logstore.sources.zookeeper.interceptors.i2.value = zookeeper 
+
+logstore.sources.syslogd.type = syslogtcp
+logstore.sources.syslogd.port = 5140
+logstore.sources.syslogd.host = 127.0.0.1
+logstore.sources.syslogd.channels = memch
+logstore.sources.syslogd.interceptors = i3
+logstore.sources.syslogd.interceptors.i3.type = static
+logstore.sources.syslogd.interceptors.i3.key = source 
+logstore.sources.syslogd.interceptors.i3.value = syslogd 
+
+
+# sink setup
+logstore.sinks.custom.type = log.agent.extension.flume.FlumeSink
+logstore.sinks.custom.channel = memch
+
+# channel setup
+logstore.channels.memch.type = memory
+logstore.channels.memch.capacity = 1000000
+logstore.channels.memch.transactionCapacity = 10000
+

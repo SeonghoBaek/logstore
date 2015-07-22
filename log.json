@@ -1,0 +1,90 @@
+// Line Log
+
+{
+  "log": {
+    "header":
+    {
+      "host":"10.186.119.56",
+      "time":1430898250166,
+      "uri":"tv.apps.view.applist"
+    },
+    "body":
+    {
+      "level":1,
+      "text":"user id error"
+    }
+  },
+
+  "type":0
+}
+
+// Transaction Log
+
+{
+  "log":
+  [
+    {
+      "header":{"host":"10.186.119.56","time":1430898250181,"uri":"mobile.user.position"},
+      "body":{"level":128,"text":"hello 1430898250181 world 99000"}
+    },
+    {
+      "header":{"host":"10.186.119.56","time":1430898250183,"uri":"com.apps.MainEvent"},
+      "body":{"level":64,"text":"hello 1430898250183 world 99000"}
+    },
+    {
+      "header":{"host":"10.186.119.56","time":1430898250184,"uri":"org.storm.bolt"},
+      "body":{"level":16,"text":"hello 1430898250184 world 94000"}
+    },
+    {
+      "header":{"host":"10.186.119.56","time":1430898250186,"uri":"storage.s3.disk"},
+      "body":{"level":128,"text":"Too large file"}
+    },
+    {
+      "header":{"host":"10.186.119.56","time":1430898250187,"uri":"storage.es.index"},
+      "body":{"level":8,"text":"Index creation failure"}
+    }
+  ],
+  "start":1430898250181,
+  "end":1430898250187,
+  "type":1
+}
+
+// Full log
+{
+  "log":[
+  {
+    "header":
+    {
+      "devid":"1133EFAA000-213",
+      "host":"10.186.119.56",
+      "time":1431042332019,
+      "uri":"com.tv.testManager",
+      "userid":"admin",
+      "macaddr":"01:02:22:F1:AD:09"
+    },
+    "body":
+    {
+      "level":32,
+      "text":"test failure"
+    }
+  },
+  {
+    "header":
+    {
+      "devid":"1133EFAA000-213",
+      "host":"10.186.119.56",
+      "time":1431042332103,
+      "uri":"com.tv.deviceid",
+      "userid":"hacker",
+      "macaddr":"01:02:22:F1:AD:09"
+    },
+    "body":
+    {
+      "level":1,
+      "text":"device illegal connection"
+    }
+  }],
+  "start":1431042332019,
+  "end":1431042332103,
+  "type":1
+}
